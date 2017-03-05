@@ -38,17 +38,27 @@ var Hitokage = new Pokemon(
     0.61,
     8.5,
     "Blaze",
-    1, 229, 234, 83,
+    [1, 229, 234, 83],
     "Hitokage"
 );
 
-console.log("廟挖種子HP:" + Fushigidane.hp);
-console.log("小火龍HP:" + Hitokage.hp);
-console.log("小火龍發動攻擊");
-Hitokage.attack(Fushigidane);
-console.log("廟挖種子HP:" + Fushigidane.hp);
-console.log("小火龍HP:" + Hitokage.hp);
-console.log("換廟挖種子發動攻擊");
-Fushigidane.attack(Hitokage);
-console.log("廟挖種子HP:" + Fushigidane.hp);
-console.log("小火龍HP:" + Hitokage.hp);
+$(function () {
+    function Render() {
+        $("#fushigi-name").text(Fushigidane.japanese);
+        $("#fushigi-hp").text(Fushigidane.hp);
+
+        $("#hito-name").text(Hitokage.japanese);
+        $("#hito-hp").text(Hitokage.hp);
+    }
+
+    Render();
+    $("#fushigi-att").click(function () {
+        Fushigidane.attack(Hitokage);
+        Render();
+    });
+    $("#hito-att").click(function () {
+        Hitokage.attack(Fushigidane);
+        Render();
+    });
+
+});
